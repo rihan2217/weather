@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+        display: flex;
+        gap: 10vh;
+        background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/07/Weather-Images-HD.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    sup {
+        font-size: 40px;
+    }
+
+    .left {
+        height: 100vh;
+        width: 25vw;
+        background-color: transparent;
+        padding: 20px;
+        color: aliceblue;
+    }
+
+    .city {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 150px;
+        color: black;
+    }
+
+    .city input {
+        padding: 13px 10px;
+        width: 320px;
+        font-size: 22px;
+        text-decoration: none;
+        border-radius: 20px;
+    }
+
+    .opt {
+        position: absolute;
+        right: 20px;
+    }
+
+    .opt span {
+        padding: 3px 10px;
+        background-color: transparent;
+    }
+
+    .opt i:hover {
+        scale: 1.1;
+    }
+
+    .weathericon img {
+        height: 36%;
+        width: 36%;
+    }
+
+    .weathericon {
+        object-fit: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .temprature,
+    .feelslike,
+    .date,
+    .cityname {
+        margin: 30px 0;
+        text-align: center;
+    }
+
+    .right {
+        width: 30vw;
+        padding: 20px 0;
+        position: absolute;
+        left:35vw;
+        right: 1rem;
+        color: aliceblue;
+        text-align: center;
+    }
+
+    .right div{
+        border-radius: 20px;
+    }
+
+    .right h1 {
+        margin-bottom: 20px;
+        margin-left: 80px;
+    }
+
+    .output {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 2rem;
+        height: 83vh;
+        column-gap: 12rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        background-color: transparent;
+        text-align: center;
+        border-radius: 20px;
+       
+    }
+
+    .highlight h1 {
+        margin: 25px;
+        
+    }
+
+    .highlight i {
+        font-size: 33px;
+        margin-bottom: 15px;
+    }
+
+    .sunrise,
+    .sunset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding-top: 20px;
+    }
+
+    .highlight:hover {
+        background-color: rgb(200, 196, 196);
+        scale: 1.1;
+    }
+</style>
+
+<body>
+    <main>
+
+        <div class="left">
+            <div class="city">
+                <input type="text" id="city" value="Delhi">
+                <div class="opt">
+                    <span id="c">C</span>
+                    <i class="fa-solid fa-magnifying-glass" id="search"></i>
+                </div>
+            </div>
+            <hr>
+            <div class="weathericon">
+                <img src="clear.png">
+            </div>
+            <div class="temp">
+
+                <div class="temprature">
+                    <h1>30 c</h1>
+                </div>
+                <div class="feelslike">
+                    <h1>30 c</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="date">
+                <h1>date</h1>
+                <h2>time</h2>
+            </div>
+            <div class="cityname">
+                <h1>city</h1>
+            </div>
+        </div>
+        <div class="right">
+            <h1>Today's Highlights</h1>
+            <div class="output">
+                <div class="highlight">
+                    <h1>Humidity</h1>
+                    <i class="fa-solid fa-water"></i>
+                    <h2 id=humidity>36<sub>%</sub></h2>
+                </div>
+                <div class="highlight">
+                    <h1>Wind Speed</h1>
+                    <i class="fa-solid fa-wind"></i>
+                    <h2 id=wind>5<sub>m/s</sub></h2>
+                </div>
+                <div class="highlight">
+                    <div class="sunrise">
+                        <i class="fa-solid fa-temperature-arrow-down"></i>
+                        <div>
+                            <p id="rise">6:14 AM</p>
+                            <p>min_temp</p>
+                        </div>
+                    </div>
+                    <div class="sunset">
+                        <i class="fa-solid fa-temperature-arrow-up"></i>
+                        <div>
+                            <p id="set">6:14 PM</p>
+                            <p>max_temp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight">
+                    <h1>Clouds</h1>
+                    <i class="fa-solid fa-cloud"></i>
+                    <h2 id=cloud>20<sub>%</sub></h2>
+                </div>
+                <div class="highlight">
+                    <h1>Visibility</h1>
+                    <i class="fa-solid fa-bacon"></i>
+                    <h2 id=index>4.32</h2>
+                </div>
+                <div class="highlight">
+                    <h1>Pressure</h1>
+                    <i class="fa-solid fa-volcano"></i>
+                    <h2 id=pressure>1013<sub>hpa</sub></h2>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="weather.js"></script>
+
+</html>
